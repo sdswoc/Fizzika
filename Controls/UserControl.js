@@ -1,6 +1,7 @@
 // Represents the index of currently selected object
 var gObjectNum = 0; 
 
+//Keyboard Control
 function userControl(event){
 	var keycode;
 	//IE event
@@ -12,6 +13,7 @@ function userControl(event){
 		keycode = event.which;
 	}
 
+	//Parameters of the Canvas
 	var width = gEngine.Core.mWidth;
 	var height = gEngine.Core.mHeight;
 	var context = gEngine.Core.mContext;
