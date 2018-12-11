@@ -1,3 +1,4 @@
+//Implementing the Rectangle Class
 var Rectangle = function (center, width, height) {
 	
 	//Inherit from RigidShape class
@@ -10,19 +11,18 @@ var Rectangle = function (center, width, height) {
 	this.mFaceNormal = [];
 
 	//Computing the vertex position 
-	
 	//TopLeft
-	this.mVertex[0] = new Vec2( center.x - this.width / 2,
-		center.y - this.height / 2 );
+	this.mVertex[0] = new Vec2( center.x - this.mWidth / 2,
+		center.y - this.mHeight / 2 );
 	//TopRight
-	this.mVertex[0] = new Vec2( center.x + this.width / 2,
-		center.y - this.height / 2 );
+	this.mVertex[1] = new Vec2( center.x + this.mWidth / 2,
+		center.y - this.mHeight / 2 );
 	//BottomRight
-	this.mVertex[0] = new Vec2( center.x + this.width / 2,
-		center.y + this.height / 2 );
+	this.mVertex[2] = new Vec2( center.x + this.mWidth / 2,
+		center.y + this.mHeight / 2 );
 	//BottomLeft
-	this.mVertex[0] = new Vec2( center.x - this.width / 2,
-		center.y + this.height / 2 );
+	this.mVertex[3] = new Vec2( center.x - this.mWidth / 2,
+		center.y + this.mHeight / 2 );
 	
 	//Computing the Face Normals
 	// Top , Right , Bottom , Left
@@ -39,9 +39,10 @@ var Rectangle = function (center, width, height) {
 //Ensuring that Rectangle class inherits properly
 //from the RigidShape
 var prototype = Object.create(RigidShape.prototype);
-prototype.contructor = Rectangle;
+prototype.constructor = Rectangle;
 Rectangle.prototype = prototype;
 
+//Implementing the drawing method
 Rectangle.prototype.draw = function (context) {
 	context.save();
 	context.translate(this.mVertex[0].x, this.mVertex[0].y);
