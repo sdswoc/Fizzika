@@ -1,0 +1,25 @@
+<html>
+<body>
+	<script src = "Vec2.js"></script>
+	<script>
+		var v1 = new Vec2(4,3);
+ 		var v2 = new Vec2(1,4);
+		var v0 = new Vec2(0,0);
+		console.log(v1);
+		console.log(v2);
+		console.log(v0);
+		
+		console.log(v1.add(v2));
+		console.log(v1.subtract(v2));
+		console.log(v1.normalize());
+		console.log(v1.scale(3));
+		console.log(v1.rotate(v0,Math.PI));
+		console.log( "length: " + v1.length() );
+		console.log( "normalized length: " + v1.normalize().length() );
+		console.log( "Dot: " + v1.dot(v2) );
+		console.log( "Cross: " + v1.cross(v2) );
+		console.log( "Distance: " + v1.distance(v0) );
+		console.log( "Multiplying by zero vector: " + v1.dot(v0) ); 
+	</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<title>
+		</title>
+	</head>
+	<!-- Initialising the Demo -->
+	<body 
+		onkeydown ="return  userControl(event);"
+		onload="var game = new MyGame();
+				gEngine.Core.initializeEngineCore()">
+
+		<!-- Canvas and the Info Box-->
+		<table style="padding: 2px">
+			<tr>
+				<td>
+					<div><canvas id="canvas"></canvas></div>
+				</td>
+				<td>
+					<div id=uiEchoString> </div>
+				</td>
+			</tr>
+		</table>
+	<!-- Including all the scripts-->
+	<script type="text/javascript" src="Lib/Vec2.js"></script>
+	<script type="text/javascript" src="RigidBody/RigidShape.js"></script>
+	<script type="text/javascript" src="RigidBody/Circle.js"></script>
+	<script type="text/javascript" src="RigidBody/Rectangle.js"></script>
+	<script type="text/javascript" src="EngineCore/Core.js"></script>
+	<script type="text/javascript" src="MyGame.js"></script>
+	<script type="text/javascript" src="Controls/UserControl.js"></script>
+	</body>
+</html>
