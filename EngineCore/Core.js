@@ -91,7 +91,7 @@ gEngine.Core = (function (){
 		updateUIEcho();
 		draw();
 	};
-	//IInitialises the Game Loop
+	//Initialises the Game Loop
 	var initializeEngineCore = function () {
 		runGameLoop();
 	};
