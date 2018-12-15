@@ -64,7 +64,7 @@ gEngine.Core = (function (){
 				"<li><b>WASD</b> + <b>QE</b>: Position [Move + Rotate]</li>" +
 				"</ul> <hr>" +
 				"<b>F/G</b>: Spawn [Rectangle/Circle] at selected object" +
-				"<p><b>H</b>: Fix object</p>" +
+				"<p><b>H</b>: Toggle Gravity of the selected Object</p>" +
 				"<p><b>R</b>: Reset System</p>" +
 				"<hr>";
 	};
