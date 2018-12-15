@@ -1,12 +1,12 @@
 // Implementing the Circle Class
-var Circle = function (center, radius) {
+var Circle = function (center, radius, fix = 1) {
 	
 	// Inherit from RigidBase Class
 	RigidShape.call(this, center);
 	
 	this.mType = "Circle";
 	this.mRadius = radius;
-
+	this.mFix = fix;
 	//The start point of line in the circumference of circle
 	//This.line remains verticallyTop at zero rotation
 	this.mStartPoint = new Vec2(center.x, center.y - radius);
@@ -33,4 +33,18 @@ Circle.prototype.draw = function (context) {
 	
 	context.closePath();
 	context.stroke();
+};
+
+//Moves the Objects in the <s>(Vec2) direction by its magnitude 
+Circle.prototype.move = function (s) {
+	this.mStartPoint = this.mStartPoint.add(s);
+	this.mCenter = this.mCenter.add(s);
+	return this;
+};
+
+// Rotates the circle anti clockwise in <angle> radians
+Circle.prototype.rotate = function (angle) {
+	this.mAngle += angle;
+	this.mStartPoint = this.mStartPoint.rotate(this.mCenter, angle); 
+	return this;
 };
