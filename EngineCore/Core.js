@@ -15,6 +15,15 @@ gEngine.Core = (function (){
 	mCanvas.width = mWidth;
 	mCanvas.height = mHeight;
 	
+	//Parameters for Game loop
+	var mCurrentTime, mElapsedTime, mPreviousTime = Date.now(),
+	mLagTime = 0;
+	var kFPS = 60; // Frames Per Second
+	var kFrameTime = 1 / kFPS;
+	var mUpdateIntervalInSeconds = kFrameTime;
+	var kMPF = 1000 * kFrameTime; //Milliseconds per frame
+
+
 	//Stores all the Objects in the scene
 	var mAllObjects = [];
 
@@ -30,6 +39,13 @@ gEngine.Core = (function (){
 		}
 	};
 
+	var update = function () {
+		var i;
+		for( i = 0; i < mAllObjects.length; i++){
+			mAllObjects[i].update(mContext);
+		}
+	};
+
 	//Displays parameters of the selected object in the Scene
 	var updateUIEcho = function () {
 
@@ -40,11 +56,17 @@ gEngine.Core = (function (){
 				"<li> Center: " + mAllObjects[gObjectNum].mCenter.x.toPrecision(3)
 				+ "," +
 				mAllObjects[gObjectNum].mCenter.y.toPrecision(3) + "</li>" +
-				"</ul> <hr>" + "<p><b> Control </b> : of Selected object </p>" +
+				"<li>Angle: " + mAllObjects[gObjectNum].mAngle.toPrecision(3) + "</li>" +
+				"</ul> <hr>" +
+				"<p><b> Control </b> : of Selected object </p>" +
 				"<ul style = \"margin: 10px\">" +
 				"<li><b>Num</b> or <b>Up/Down Arrow</b>: SelectedObject</li>" +
+				"<li><b>WASD</b> + <b>QE</b>: Position [Move + Rotate]</li>" +
 				"</ul> <hr>" +
-				"<b>F/G</b>: Spawn [Rectangle/Circle] at random location" + "<hr>";
+				"<b>F/G</b>: Spawn [Rectangle/Circle] at selected object" +
+				"<p><b>H</b>: Fix object</p>" +
+				"<p><b>R</b>: Reset System</p>" +
+				"<hr>";
 	};
 
 	//The Game Loop
@@ -52,6 +74,20 @@ gEngine.Core = (function (){
 		requestAnimationFrame(function () {
 			runGameLoop();
 		});
+		//Computing the Elapsed time from the previous loop
+		mCurrentTime = Date.now();
+		mElapsedTime = mCurrentTime - mPreviousTime;
+		mPreviousTime = mCurrentTime;
+		mLagTime += mElapsedTime;	
+
+		//Update the game appropriate number of times
+		//Update only every Milliseconds per frame
+		//if lag greater than update frames, update until caught up
+		//ensures that the update remains consistent if even the frame drops
+		while(mLagTime >= kMPF){
+			mLagTime -= kMPF;
+			update();
+		}
 		updateUIEcho();
 		draw();
 	};
