@@ -6,7 +6,8 @@ var Circle = function (center, radius, fix = 1) {
 	
 	this.mType = "Circle";
 	this.mRadius = radius;
-	this.mFix = fix;
+	this.mBoundRadius = radius;
+	//this.mFix = fix;
 	//The start point of line in the circumference of circle
 	//This.line remains verticallyTop at zero rotation
 	this.mStartPoint = new Vec2(center.x, center.y - radius);

@@ -80,6 +80,8 @@ gEngine.Core = (function (){
 		mPreviousTime = mCurrentTime;
 		mLagTime += mElapsedTime;	
 
+		draw();
+		updateUIEcho();
 		//Update the game appropriate number of times
 		//Update only every Milliseconds per frame
 		//if lag greater than update frames, update until caught up
@@ -89,8 +91,7 @@ gEngine.Core = (function (){
 			gEngine.Physics.collision();
 			update();
 		}
-		updateUIEcho();
-		draw();
+		
 	};
 	//Initialises the Game Loop
 	var initializeEngineCore = function () {

@@ -9,7 +9,9 @@ var Rectangle = function (center, width, height, fix = 1) {
 	this.mHeight = height;
 	this.mVertex = [];
 	this.mFaceNormal = [];
-	this.mFix = fix;
+	this.mBoundRadius = (0.5) * Math.sqrt( (this.mWidth * this.mWidth) + 
+									(this.mHeight * this.mHeight) );
+	//this.mFix = fix;
 
 	//Computing the vertex position 
 	//TopLeft
