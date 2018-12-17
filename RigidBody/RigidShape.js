@@ -3,7 +3,7 @@
 function RigidShape(center) {
 	this.mCenter = center;
 	this.mAngle = 0;
-	this.mBoundRadius = 0;		
+	this.mBoundRadius = 0;
 	gEngine.Core.mAllObjects.push(this);
 }
 
