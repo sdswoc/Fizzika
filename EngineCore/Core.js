@@ -86,6 +86,7 @@ gEngine.Core = (function (){
 		//ensures that the update remains consistent if even the frame drops
 		while(mLagTime >= kMPF){
 			mLagTime -= kMPF;
+			gEngine.Physics.collision();
 			update();
 		}
 		updateUIEcho();
