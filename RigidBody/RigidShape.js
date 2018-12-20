@@ -9,8 +9,8 @@ function RigidShape(center) {
 
 //Update the parameters
 RigidShape.prototype.update = function (){
-	//if(this.mCenter.y < gEngine.Core.mHeight && this.mFix != 0)
-		//this.move(new Vec2(0, 1));
+	// if(this.mCenter.y < gEngine.Core.mHeight && this.mFix != 0)
+	// 	this.move((new Vec2(0, 1)));
 };
 RigidShape.prototype.boundTest = function(otherShape){
 	let vFrom1to2 = otherShape.mCenter.subtract(this.mCenter);

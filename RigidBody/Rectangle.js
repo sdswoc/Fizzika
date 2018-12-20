@@ -1,19 +1,19 @@
 //Implementing the Rectangle Class
 var Rectangle = function (center, width, height, fix = 1) {
-	
+
 	//Inherit from RigidShape class
 	RigidShape.call(this, center);
-	
+
 	this.mType = "Rectangle";
 	this.mWidth = width;
 	this.mHeight = height;
 	this.mVertex = [];
 	this.mFaceNormal = [];
-	this.mBoundRadius = (0.5) * Math.sqrt( (this.mWidth * this.mWidth) + 
+	this.mBoundRadius = (0.5) * Math.sqrt( (this.mWidth * this.mWidth) +
 									(this.mHeight * this.mHeight) );
 	//this.mFix = fix;
 
-	//Computing the vertex position 
+	//Computing the vertex position
 	//TopLeft
 	this.mVertex[0] = new Vec2( center.x - this.mWidth / 2,
 		center.y - this.mHeight / 2 );
@@ -26,7 +26,7 @@ var Rectangle = function (center, width, height, fix = 1) {
 	//BottomLeft
 	this.mVertex[3] = new Vec2( center.x - this.mWidth / 2,
 		center.y + this.mHeight / 2 );
-	
+
 	//Computing the Face Normals
 	// Top , Right , Bottom , Left
 	// this.mFaceNormal[0] = this.mVertex[1].subtract(this.mVertex[2]);
@@ -87,4 +87,3 @@ Rectangle.prototype.rotate = function (angle) {
 	this.computeFaceNormals();
 	return this;
 };
-
