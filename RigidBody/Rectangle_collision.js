@@ -1,12 +1,12 @@
 Rectangle.prototype.collisionTest = function (otherShape, collisionInfo) {
   let status = false;
   if(otherShape.mType == "Circle")
-    status = false;
+    status = this.collidedRectCirc(otherShape, collisionInfo);
   else {
     status = this.collidedRectRect(this, otherShape, collisionInfo);
   }
   return status;
-}
+};
 var SupportStruct = function () {
     this.mSupportPoint = null;
     this.mSupportPointDist = 0;
@@ -84,4 +84,75 @@ Rectangle.prototype.collidedRectRect = function (r1, r2, collisionInfo) {
     }
   }
   return status1 && status2;
+};
+
+
+Rectangle.prototype.collidedRectCirc = function (otherCirc, collisionInfo){
+  let inside = true;
+  let bestDistance = -99999;
+  let nearestEdge = 0;
+  let v;
+  //Compute the nearest edge
+  for( let i = 0; i < 4; i++){
+    var circ2Pos = otherCirc.mCenter;
+    v = circ2Pos.subtract(this.mVertex[i]);
+    projection = v.dot(this.mFaceNormal[i]);
+    //if the center is outside the rectangle
+    if(projection > 0){
+      bestDistance = projection;
+      nearestEdge = i;
+      inside = false;
+      break;
+    }
+    if(projection > bestDistance){
+      bestDistance = projection;
+      nearestEdge = i;
+    }
+  }
+  if(!inside){
+    // vertex from left vertex to center of the Circle
+    var v1 = circ2Pos.subtract(this.mVertex[nearestEdge]);
+    // direction of the edge
+    var v2 = this.mVertex[(nearestEdge + 1) % 4].subtract(this.mVertex[nearestEdge]);
+
+    var dot = v1.dot(v2);
+    if(dot < 0){
+      let dis = v1.length();
+      if(dis > otherCirc.mRadius)  return false;
+
+      let normal = v1.normalize();
+      let radiusVec = normal.scale(-otherCirc.mRadius);
+      collisionInfo.setInfo(otherCirc.mRadius - dis, normal, circ2Pos.add(radiusVec));
+    }
+    else{
+      let v1 = circ2Pos.subtract(this.mVertex[(nearestEdge + 1) % 4]);
+      v2 = v2.scale(-1);
+      var dot = v1.dot(v2);
+      if(dot < 0) {
+        let dis = v1.length();
+        if(dis > otherCirc.mRadius)  return false;
+
+        let normal = v1.normalize();
+        let radiusVec = normal.scale(-otherCirc.mRadius);
+        collisionInfo.setInfo(otherCirc.mRadius - dis, normal, circ2Pos.add(radiusVec));
+      }else{
+        if(bestDistance < otherCirc.mRadius){
+          let radiusVec = this.mFaceNormal[nearestEdge].scale(otherCirc.mRadius);
+          collisionInfo.setInfo(otherCirc.mRadius - bestDistance,
+                                this.mFaceNormal[nearestEdge],
+                                circ2Pos.subtract(radiusVec));
+        }
+        else{
+          return false;
+        }
+      }
+    }
+  }else{
+    //center of circle inside the rectangle
+    let radiusVec =  this.mFaceNormal[nearestEdge].scale(otherCirc.mRadius);
+    collisionInfo.setInfo(otherCirc.mRadius - bestDistance,
+                          this.mFaceNormal[nearestEdge],
+                        circ2Pos.subtract(radiusVec));
+  }
+  return true;
 };

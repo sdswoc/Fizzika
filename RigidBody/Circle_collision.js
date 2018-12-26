@@ -6,7 +6,7 @@
       status = this.collidedCircCirc(this, otherShape, collisionInfo);
     }
     else {
-      status = false;
+      status = otherShape.collidedRectCirc(this, collisionInfo);
     }
     return status;
   };
