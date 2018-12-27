@@ -1,8 +1,8 @@
 //Implementing the Rectangle Class
-var Rectangle = function (center, width, height, fix = 1) {
+var Rectangle = function (center, width = 1, height = 1, mass = 1, friction = 0.8, restitution = 0.2) {
 
 	//Inherit from RigidShape class
-	RigidShape.call(this, center);
+	RigidShape.call(this, center, mass, friction, restitution);
 
 	this.mType = "Rectangle";
 	this.mWidth = width;
@@ -12,7 +12,7 @@ var Rectangle = function (center, width, height, fix = 1) {
 	this.mBoundRadius = (0.5) * Math.sqrt( (this.mWidth * this.mWidth) +
 									(this.mHeight * this.mHeight) );
 	//this.mFix = fix;
-
+	this.updateInertia();
 	//Computing the vertex position
 	//TopLeft
 	this.mVertex[0] = new Vec2( center.x - this.mWidth / 2,
@@ -86,4 +86,12 @@ Rectangle.prototype.rotate = function (angle) {
 	}
 	this.computeFaceNormals();
 	return this;
+};
+Rectangle.prototype.updateInertia = function () {
+	if( this.mInvMass == 0) this.mInertia = 0;
+	else {
+		this.mInertia = ( 1 / this.mInvMass ) * (this.mWidth * this.mWidth +
+											this.mHeight * this.mHeight ) / 12;
+		this.mInertia = 1 / this.mInertia;
+	}
 };

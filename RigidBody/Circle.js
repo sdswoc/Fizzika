@@ -1,8 +1,8 @@
 // Defines the Circle Rigid Body Class
-var Circle = function (center, radius, fix = 1) {
+var Circle = function (center, radius = 1, mass = 1, friction = 0.8, restitution = 0.2) {
 
 	// Inherit from RigidBase Class
-	RigidShape.call(this, center);
+	RigidShape.call(this, center, mass, friction, restitution);
 
 	this.mType = "Circle";
 	this.mRadius = radius;
@@ -11,7 +11,7 @@ var Circle = function (center, radius, fix = 1) {
 	//The start point of line in the circumference of circle
 	//This.line remains verticallyTop at zero rotation
 	this.mStartPoint = new Vec2(center.x, center.y - radius);
-
+	this.updateInertia();
 };
 
 //Ensuring proper Inheritance from RigidShape class
@@ -48,4 +48,10 @@ Circle.prototype.rotate = function (angle) {
 	this.mAngle += angle;
 	this.mStartPoint = this.mStartPoint.rotate(this.mCenter, angle);
 	return this;
+};
+Circle.prototype.updateInertia = function () {
+	if(this.mInvMass == 0) this.mInertia = 0;
+	else{
+		this.mInertia = ( 1 / this.mInvMass) * (this.mRadius * this.mRadius) / 12;
+	}
 };
