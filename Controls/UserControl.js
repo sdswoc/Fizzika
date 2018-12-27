@@ -1,5 +1,5 @@
 // Represents the index of currently selected object
-var gObjectNum = 0; 
+var gObjectNum = 0;
 
 const Keys = {
 	//Select
@@ -57,18 +57,20 @@ function userControl(event){
 	}
 
 	//Rotate
-	if (keycode === Keys.Q) { 
+	if (keycode === Keys.Q) {
 		gEngine.Core.mAllObjects[gObjectNum].rotate(-mAngle);
 	}
-	if (keycode === Keys.E) { 
+	if (keycode === Keys.E) {
 		gEngine.Core.mAllObjects[gObjectNum].rotate(mAngle);
 	}
 
-	//Toggle Gravity
-	if (keycode === Keys.H) { 
-		if(gEngine.Core.mAllObjects[gObjectNum].mFix === 0)
-		gEngine.Core.mAllObjects[gObjectNum].mFix = 1;
-		else gEngine.Core.mAllObjects[gObjectNum].mFix = 0;
+	//Excite all Objects
+	if (keycode === Keys.H) {
+		var i;
+		for (i = 0; i < gEngine.Core.mAllObjects.length; i++) {
+			if (gEngine.Core.mAllObjects[i].mInvMass !== 0)
+				gEngine.Core.mAllObjects[i].mVelocity = new Vec2(Math.random() * 20 - 10, Math.random() * 20 - 10);
+			}
 	}
 	//Reset the Scene
 	if (keycode == Keys.R) {
@@ -76,24 +78,53 @@ function userControl(event){
 		gObjectNum = 0;
 	}
 	//Spawn Rectangle
-	if(keycode == Keys.F){ 
+	if(keycode == Keys.F){
 		let pos = gEngine.Core.mAllObjects[gObjectNum].mCenter;
-		var r1 = new Rectangle(pos, 
+		var r1 = new Rectangle(pos,
 				Math.random() * 30 + 10,
-				Math.random() * 30 + 10);
+				Math.random() * 30 + 10,
+				Math.random() * 30, Math.random(), Math.random());
 	}
 	//Spawn Circle
-	if(keycode == Keys.G){ 
+	if(keycode == Keys.G){
 		let pos = gEngine.Core.mAllObjects[gObjectNum].mCenter;
-		var r1 = new Circle(pos, Math.random() * 10 + 20);
+		var r1 = new Circle(pos, Math.random() * 10 + 20,
+							Math.random() * 30, Math.random(), Math.random());
 	}
-	//Numeric Keys 0 - 9	
+	if (keycode == 73) //I
+		gEngine.Core.mAllObjects[gObjectNum].mVelocity.y -= 1;
+	if (keycode == 75) //k
+		gEngine.Core.mAllObjects[gObjectNum].mVelocity.y += 1;
+	if (keycode == 74) //j
+		gEngine.Core.mAllObjects[gObjectNum].mVelocity.x -= 1;
+	if (keycode == 76) //l
+		gEngine.Core.mAllObjects[gObjectNum].mVelocity.x += 1;
+	if (keycode == 85) //U
+		gEngine.Core.mAllObjects[gObjectNum].mAngularVelocity -= 0.1;
+	if (keycode == 79) //O
+		gEngine.Core.mAllObjects[gObjectNum].mAngularVelocity += 0.1;
+	if (keycode == 90) //Z
+		gEngine.Core.mAllObjects[gObjectNum].updateMass(-1);
+	if (keycode == 88) //X
+		gEngine.Core.mAllObjects[gObjectNum].updateMass(1);
+	if (keycode == 67) //C
+		gEngine.Core.mAllObjects[gObjectNum].mFriction -= 0.01;
+	if (keycode == 86) //V
+		gEngine.Core.mAllObjects[gObjectNum].mFriction += 0.01;
+	if (keycode == 66) //B
+		gEngine.Core.mAllObjects[gObjectNum].mRestitution -= 0.01;
+	if (keycode == 78) //N
+		gEngine.Core.mAllObjects[gObjectNum].mRestitution += 0.01;
+	if (keycode == 188){ //’
+		gEngine.Core.mMovement = !gEngine.Core.mMovement;
+	}
+	//Numeric Keys 0 - 9
 	if(keycode >=48 && keycode <=57){
 		if(keycode - 48 < gEngine.Core.mAllObjects.length)
 			gObjectNum = keycode - 48;
 	}
 	//up arrow
-	if(keycode == Keys.UP) { 
+	if(keycode == Keys.UP) {
 		if(gObjectNum > 0)
 			gObjectNum--;
 	}
@@ -103,4 +134,4 @@ function userControl(event){
 			gObjectNum++;
 	}
 
-}	
+}
