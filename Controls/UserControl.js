@@ -115,6 +115,10 @@ function userControl(event){
 		gEngine.Core.mAllObjects[gObjectNum].mRestitution -= 0.01;
 	if (keycode == 78) //N
 		gEngine.Core.mAllObjects[gObjectNum].mRestitution += 0.01;
+	if (keycode === 77) {
+    //M
+    gEngine.Physics.mPositionalCorrectionFlag = !gEngine.Physics.mPositionalCorrectionFlag;
+  }
 	if (keycode == 188){ //’
 		gEngine.Core.mMovement = !gEngine.Core.mMovement;
 	}
