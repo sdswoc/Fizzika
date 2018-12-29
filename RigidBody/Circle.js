@@ -1,5 +1,5 @@
 // Defines the Circle Rigid Body Class
-var Circle = function (center, radius = 1, mass = 1, friction = 0.8, restitution = 0.2) {
+var Circle = function (center, radius = 20, mass = 1, friction = 0.8, restitution = 0.2) {
 
 	// Inherit from RigidBase Class
 	RigidShape.call(this, center, mass, friction, restitution);

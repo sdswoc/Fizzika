@@ -74,8 +74,9 @@ function userControl(event){
 	}
 	//Reset the Scene
 	if (keycode == Keys.R) {
-		gEngine.Core.mAllObjects.splice(8, gEngine.Core.mAllObjects.length);
+		gEngine.Core.mAllObjects.splice(0, gEngine.Core.mAllObjects.length);
 		gObjectNum = 0;
+		MyGame();
 	}
 	//Spawn Rectangle
 	if(keycode == Keys.F){
