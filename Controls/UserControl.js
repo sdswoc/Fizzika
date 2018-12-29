@@ -69,28 +69,30 @@ function userControl(event){
 		var i;
 		for (i = 0; i < gEngine.Core.mAllObjects.length; i++) {
 			if (gEngine.Core.mAllObjects[i].mInvMass !== 0)
-				gEngine.Core.mAllObjects[i].mVelocity = new Vec2(Math.random() * 20 - 10, Math.random() * 20 - 10);
+				gEngine.Core.mAllObjects[i].mVelocity = new Vec2(Math.random() * 500 - 250, Math.random() * 500 - 250);
 			}
 	}
 	//Reset the Scene
 	if (keycode == Keys.R) {
-		gEngine.Core.mAllObjects.splice(5, gEngine.Core.mAllObjects.length);
+		gEngine.Core.mAllObjects.splice(8, gEngine.Core.mAllObjects.length);
 		gObjectNum = 0;
 	}
 	//Spawn Rectangle
 	if(keycode == Keys.F){
 		let pos = gEngine.Core.mAllObjects[gObjectNum].mCenter;
+		//let pos = new Vec2(100,100);
 		var r1 = new Rectangle(pos,
 				Math.random() * 30 + 10,
 				Math.random() * 30 + 10,
-				Math.random() * 30, Math.random(), Math.random() * 0.5 + 0.5);
-		r1.mVelocity = new Vec2(Math.random() * 300 - 150, Math.random() * 300 - 150);
+				Math.random() * 30, Math.random(), Math.random());
+		r1.mVelocity = new Vec2(Math.random() * 300 - 150, Math.random() * 300 - 15);
 	}
 	//Spawn Circle
 	if(keycode == Keys.G){
 		let pos = gEngine.Core.mAllObjects[gObjectNum].mCenter;
+	//let pos = new Vec2(100,100);
 		var r1 = new Circle(pos, Math.random() * 10 + 20,
-							Math.random() * 30, Math.random(), Math.random() * 0.5 + 0.5);
+							Math.random() * 30, Math.random(), Math.random());
 		r1.mVelocity = new Vec2(Math.random() * 300 - 150, Math.random() * 300 - 150);
 	}
 	if (keycode == 73) //I

@@ -52,6 +52,7 @@ Circle.prototype.rotate = function (angle) {
 Circle.prototype.updateInertia = function () {
 	if(this.mInvMass == 0) this.mInertia = 0;
 	else{
-		this.mInertia = ( 1 / this.mInvMass) * (this.mRadius * this.mRadius) / 12;
+		this.mInertia = ( (1 / this.mInvMass) * (this.mRadius * this.mRadius) ) / 12 ;
+		this.mInertia = 1 / this.mInertia;
 	}
 };

@@ -52,6 +52,7 @@ gEngine.Core = (function (){
 	//Displays parameters of the selected object in the Scene
 	var updateUIEcho = function () {
 		document.getElementById("uiEchoString").innerHTML =
+
 			 "<p><b>FPS:</b>" + Math.round(1000 / mElapsedTime) +
 			"<p><b>All Objects:</b>" + mAllObjects.length +
 			"<p><b>Selected Object:</b>:</p>" +
@@ -65,6 +66,8 @@ gEngine.Core = (function (){
 			"<li>AngluarVelocity: " + mAllObjects[gObjectNum].mAngularVelocity.
 			toPrecision(3) + "</li>" +
 			"<li>Mass: " + 1 / mAllObjects[gObjectNum].mInvMass.toPrecision(3) +
+			"</li>" +
+			"<li>Inertia: " +  mAllObjects[gObjectNum].mInertia.toPrecision(3) +
 			"</li>" +
 			"<li>Friction: " + mAllObjects[gObjectNum].mFriction.toPrecision(3) +
 			"</li>" +
