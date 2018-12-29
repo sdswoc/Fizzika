@@ -1,8 +1,10 @@
 //Representing the initial Scene
 function MyGame() {
+
 	var width = gEngine.Core.mWidth;
 	var height = gEngine.Core.mHeight;
 	var r1 = new Rectangle(new Vec2(width / 2, height / 2), 3, 3, 0);
+	var r2 = new Rectangle(new Vec2(210, 400), 400, 20, 0, 0.6, 0.2);
 
 	//Creating Bounding Box
 	var up = new Rectangle( new Vec2(width / 2, 0), width , 3, 0);

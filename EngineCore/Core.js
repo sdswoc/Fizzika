@@ -9,7 +9,7 @@ var gEngine = gEngine || {};
 gEngine.Core = (function (){
 
 	//Canvas parameters
-	var mCanvas, mContext, mWidth = 800, mHeight = 450;
+	var mCanvas, mContext, mWidth = 800, mHeight = 490;
 	mCanvas = document.getElementById("canvas");
 	mContext = mCanvas.getContext("2d");
 	mCanvas.width = mWidth;
@@ -102,6 +102,7 @@ gEngine.Core = (function (){
 
 		draw();
 		updateUIEcho();
+
 		//Update the game appropriate number of times
 		//Update only every Milliseconds per frame
 		//if lag greater than update frames, update until caught up

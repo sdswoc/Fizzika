@@ -83,13 +83,15 @@ function userControl(event){
 		var r1 = new Rectangle(pos,
 				Math.random() * 30 + 10,
 				Math.random() * 30 + 10,
-				Math.random() * 30, Math.random(), Math.random());
+				Math.random() * 30, Math.random(), Math.random() * 0.5 + 0.5);
+		r1.mVelocity = new Vec2(Math.random() * 300 - 150, Math.random() * 300 - 150);
 	}
 	//Spawn Circle
 	if(keycode == Keys.G){
 		let pos = gEngine.Core.mAllObjects[gObjectNum].mCenter;
 		var r1 = new Circle(pos, Math.random() * 10 + 20,
-							Math.random() * 30, Math.random(), Math.random());
+							Math.random() * 30, Math.random(), Math.random() * 0.5 + 0.5);
+		r1.mVelocity = new Vec2(Math.random() * 300 - 150, Math.random() * 300 - 150);
 	}
 	if (keycode == 73) //I
 		gEngine.Core.mAllObjects[gObjectNum].mVelocity.y -= 1;

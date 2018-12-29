@@ -1,6 +1,6 @@
 
 // The Rigid Shape Class
-function RigidShape(center, mass = 1, friction = 0.8, restitution = 0.2) {
+function RigidShape(center, mass = 1, friction = 0.8, restitution = 0.5) {
 	this.mCenter = center;
 	this.mInertia = 0;
 	this.mInvMass = mass;
@@ -71,4 +71,4 @@ RigidShape.prototype.updateMass = function (delta) {
 };
 RigidShape.prototype.updateInertia = function () {
 
-};	
+};
