@@ -15,7 +15,7 @@ function MyGame() {
 	// var r3 = new Rectangle(new Vec2(100, 200), 200, 20, 0);
 	// var r4 = new Rectangle(new Vec2(10, 360), 20, 100, 0, 0, 1);
 
-	let ball = new Circle( new Vec2(50, 300),Math.random()*10 + 10, 100);
+	let ball = new Circle( new Vec2(50, 300),Math.random()*10 + 10, Math.random()*50 + 50);
 	for (var i = 1; i < 10; i++) {
 		let r1 = new Rectangle(
 		new Vec2(gEngine.Core.mWidth - (200),
