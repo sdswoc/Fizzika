@@ -28,7 +28,7 @@ gEngine.Core = (function (){
 	var mAllObjects = [];
 
 	var mGravity = new Vec2(0, 10);
-	var mMovement = false;
+	var mMovement = true;
 
 	//Draws all the objects in the scene
 	var draw = function () {
