@@ -4,7 +4,7 @@
 		</title>
 	</head>
 	<!-- Initialising the Demo -->
-	<body 
+	<body
 		onkeydown ="return  userControl(event);"
 		onload="var game = new MyGame();
 				gEngine.Core.initializeEngineCore()">
@@ -28,5 +28,9 @@
 	<script type="text/javascript" src="EngineCore/Core.js"></script>
 	<script type="text/javascript" src="MyGame.js"></script>
 	<script type="text/javascript" src="Controls/UserControl.js"></script>
+	<script type="text/javascript" src="EngineCore/Physics.js"></script>
+	<script type="text/javascript" src="Lib/CollisionInfo.js"></script>
+		<script type="text/javascript" src="RigidBody/Circle_collision.js"></script>
+			<script type="text/javascript" src="RigidBody/Rectangle_collision.js"></script>
 	</body>
 </html>
